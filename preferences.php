@@ -91,7 +91,7 @@ function show_user_fields($oUser)
 
 
     $oTableRow = new TableRow();
-    $oTableRow->AddTextCell("&nbsp; Wine version");
+    $oTableRow->AddTextCell("&nbsp; QEMU version");
     
     $sBugzillaVersionList = make_bugzilla_version_list("sWineRelease",
                                                        $sWineRelease);
