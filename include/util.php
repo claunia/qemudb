@@ -179,10 +179,11 @@ function get_bugzilla_versions($bReturnIds = false)
     if(STABLE_BRANCHES)
         $aBranches = array_merge($aBranches, explode(',', STABLE_BRANCHES));
 
-    foreach($aBranches as $sBranch)
-    {
-        $sWhere = "WHERE product_id =".BUGZILLA_PRODUCT_ID." AND value LIKE '$sBranch%'";
-        $sQuery = "SELECT $sFetchColumn FROM $sTable $sWhere ORDER BY id desc limit 6";
+//    foreach($aBranches as $sBranch)
+//    {
+//        $sWhere = "WHERE product_id =".BUGZILLA_PRODUCT_ID." AND value LIKE '$sBranch%'";
+        $sWhere = "WHERE product_id =".BUGZILLA_PRODUCT_ID;
+        $sQuery = "SELECT $sFetchColumn FROM $sTable $sWhere ORDER BY id desc";
         $hResult = query_bugzilladb($sQuery);
         if($hResult)
         {
@@ -192,7 +193,7 @@ function get_bugzilla_versions($bReturnIds = false)
                     $aVersions[] = $sValue;
             }
         }
-    }
+//    }
 
     return $aVersions;
 }
