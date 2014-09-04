@@ -20,6 +20,7 @@ apidb_header("QEMU Official OS Support List");
 
 <p>This is the QEMU Official OS Support List. Here you can get information on operating system
 compatibility with QEMU.</p>
+<p>You can check the version 2.0<a href="http://www.claunia.com/qemu/old/index.php">here</a>.</p>
 <?php
 $str_benefits="
     <ul>
