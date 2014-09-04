@@ -14,6 +14,8 @@ require_once(BASE."include/downloadurl.php");
 require_once(BASE."include/monitor.php");
 require_once(BASE."include/vote.php");
 
+require_once(BASE."include/qemusystem.php");
+
 define("LICENSE_OPENSOURCE", "Open Source");
 define("LICENSE_SHAREWARE", "Shareware");
 define("LICENSE_DEMO", "Demo");

@@ -44,10 +44,11 @@ class qemuSystem {
             /*
              * We fetch applicationsIds. 
              */
+             // Should get appname?
             $sQuery = "SELECT qsysId
-                       FROM appFamily
+                       FROM appVersion
                        WHERE qsysId = '?'
-                       AND state = 'accepted' ORDER BY appName";
+                       AND state = 'accepted' ORDER BY appId";
             if($hResult = query_parameters($sQuery, $iSysId))
             {
                 while($oRow = query_fetch_object($hResult))

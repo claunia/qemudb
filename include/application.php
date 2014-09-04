@@ -14,7 +14,7 @@ require_once(BASE."include/tableve.php");
 require_once(BASE."include/db_filter_ui.php");
 
 // Added by Natalia Portillo for QEMU support.
-require_once(BASE."include/qemusystem.php");
+//require_once(BASE."include/qemusystem.php");
 
 define("PLATINUM_RATING", "Platinum");
 define("GOLD_RATING", "Gold");
