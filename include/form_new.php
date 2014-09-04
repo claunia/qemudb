@@ -7,7 +7,7 @@ require_once(BASE."include/util.php");
 
 echo "<div class='default_container'>\n";
 echo '<form method="post" action="account.php">',"\n";
-echo html_frame_start("Create New Application DB Account","400","",0)
+echo html_frame_start("Create New OS DB Account","400","",0)
 ?>
 
 <!-- start of new account form -->
