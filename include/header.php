@@ -34,6 +34,7 @@
         <li><a href="http://www.qemu.org/">QEMU</a></li>
         <li><a href="http://www.claunia.com/">Claunia.com</a></li>
         <li class="s"><a href="http://www.claunia.com/qemu/">OS DB</a></li>
+        <li><a href="http://www.claunia.com/qemu/drivers/index.html">Drivers</a></li>
     </ul>
 </div>
 
