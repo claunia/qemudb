@@ -761,7 +761,7 @@ class version {
         $this->sName = $aValues['sVersionName'];
         $this->sDescription = $aValues['shVersionDescription'];
         $this->sLicense = $aValues['sLicense'];
-        $this->iqsysId = $avalue['iqsysId'];
+        $this->iqsysId = $aValues['iqsysId'];
         $this->iMaintainerRequest = $aValues['iMaintainerRequest'];
 
         if($aValues['bObsolete'] == "true")
@@ -1461,6 +1461,7 @@ class version {
         return $sReturn;
     }
 
+    // QEMU
     // returns a string containing the html for a selection list
     public function makeSystemsList($iqsysId = NULL)
     {
