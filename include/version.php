@@ -36,6 +36,7 @@ class version {
     var $sTestedRating;
     var $sSubmitTime;
     var $iSubmitterId;
+    var $iqsysId;
     private $sState;
     var $sLicense;
     var $aTestResults; /* Array of test result objects. Especially useful when
@@ -83,6 +84,7 @@ class version {
             $this->sState = $oRow->state;
             $this->sLicense = $oRow->license;
             $this->iObsoleteBy = $oRow->obsoleteBy;
+            $this->iqsysId = $oRow->qsysId;
         }
     }
 
@@ -104,12 +106,12 @@ class version {
         $hResult = query_parameters("INSERT INTO appVersion
                    (versionName, description, ratingRelease,
                    rating, appId, submitTime, submitterId,
-                   state, license)
-                       VALUES ('?', '?', '?', '?', '?', ?, '?', '?', '?')",
+                   state, license, qsysId)
+                       VALUES ('?', '?', '?', '?', '?', ?, '?', '?', '?', '?')",
                            $this->sName, $this->sDescription, $this->sTestedRelease,
                            $this->sTestedRating, $this->iAppId, "NOW()",
                            $_SESSION['current']->iUserId, $this->sState,
-                           $this->sLicense);
+                           $this->sLicense, $this->iqsysId);
 
         if($hResult)
         {
@@ -247,6 +249,16 @@ class version {
                 query_parameters("UPDATE appVotes SET versionId = '?' WHERE versionId = '?'",
                                 $this->iObsoleteBy, $this->iVersionId);
             }
+        }
+
+        if($this->iqsysId && ($this->iqsysId!=$oVersion->iqsysId))
+        {
+            if(!query_parameters("UPDATE appVersion SET qsysId = '?' WHERE versionId = '?'",
+                                 $this->iqsysId, $this->iVersionId))
+                return FALSE;
+
+            $sWhatChanged .= "System was changed from $oVersion->iqsysId to ".
+                             "$this->iqsysId.\n\n";
         }
 
         if($this->objectGetState() != $oVersion->objectGetState())
@@ -574,13 +586,13 @@ class version {
     {
         $sMsg = html_frame_start("Mark as obsolete", "90%", "", 0);
 
-        $sMsg .= "Some applications need to be updated from time to time in order to ";
+        /*$sMsg .= "Some applications need to be updated from time to time in order to ";
         $sMsg .= "be of any use. An example is online multi-player games, where you need ";
         $sMsg .= "to be running a version compatible with the server. ";
         $sMsg .= "If this is such an application, and this version is no longer usable, ";
         $sMsg .= "you can mark it as obsolete and move its current votes to a usable ";
         $sMsg .= "version instead.<br><br>";
-
+*/
         $sMsg .= $sContent;
 
         $sMsg .= html_frame_end();
@@ -656,6 +668,17 @@ class version {
         $oTableRow->AddCell($oTableCell);
 
         $oTableRow->AddTextCell($this->makeLicenseList());
+
+        $oTable->AddRow($oTableRow);
+        
+        // QEMU system
+        $oTableRow = new TableRow();
+        $oTableCell = new TableCell("System");
+        $oTableCell->SetBold(true);
+        $oTableCell->SetClass("color0");
+        $oTableRow->AddCell($oTableCell);
+
+        $oTableRow->AddTextCell($this->makeSystemsList());
 
         $oTable->AddRow($oTableRow);
 
@@ -738,6 +761,7 @@ class version {
         $this->sName = $aValues['sVersionName'];
         $this->sDescription = $aValues['shVersionDescription'];
         $this->sLicense = $aValues['sLicense'];
+        $this->iqsysId = $avalue['iqsysId'];
         $this->iMaintainerRequest = $aValues['iMaintainerRequest'];
 
         if($aValues['bObsolete'] == "true")
@@ -903,7 +927,7 @@ class version {
 
         // rating Area
                 echo "<tr class=\"$sRatingColor\" valign=\"top\"><td><b>Rating</b></td><td>".$sRating."</td></tr>\n";
-        echo "<tr class=\"$sRatingColor\" valign=\"top\"><td><b>Wine Version</b></td><td>".$sRelease."</td></tr>\n";
+        echo "<tr class=\"$sRatingColor\" valign=\"top\"><td><b>QEMU Version</b></td><td>".$sRelease."</td></tr>\n";
 
         // Download URLs
         if($sDownloadurls = downloadurl::display($this->iVersionId))
@@ -1252,7 +1276,7 @@ class version {
             $oTableCell->SetWidth("80");
             $oTableRow->AddCell($oTableCell);
 
-            $oTableCell = new TableCell("Wine version");
+            $oTableCell = new TableCell("QEMU version");
             $oTableCell->SetWidth("80");
             $oTableRow->AddCell($oTableCell);
 
@@ -1430,6 +1454,37 @@ class version {
 
             $sReturn .= "<option value=\"$aLicense[$i]\"$sSelected>".
               "$aLicense[$i]</option>\n";
+        }
+
+        $sReturn .= "</select>\n";
+
+        return $sReturn;
+    }
+
+    // returns a string containing the html for a selection list
+    public function makeSystemsList($iqsysId = NULL)
+    {
+        if(!$iqsysId)
+            $iqsysId = $this->iqsysId;
+
+        $sReturn = "<select name=\"iqsysId\">\n";
+        $sReturn .= "<option value=\"\">Choose . . .</option>\n";
+        $aSystems = qemuSystem::getOrderedList();
+        $iMax = count($aSystems);
+
+        for($i = 0; $i < $iMax; $i++)
+        {
+            if($aSystems[$i]->iSysId == $iqsysId)
+                $sSelected = " selected=\"selected\"";
+            else
+                $sSelected = "";
+			if($aSystems[$i]->iParentId !=0)
+				$sSpaces = "&nbsp;&nbsp;&nbsp;&nbsp;";
+			else
+				$sSpaces = "";
+
+            $sReturn .= "<option value=\"".$aSystems[$i]->iSysId."\"$sSelected>$sSpaces".
+              $aSystems[$i]->sDescription."</option>\n";
         }
 
         $sReturn .= "</select>\n";
