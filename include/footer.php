@@ -7,8 +7,7 @@
 
 <div id="footer">
     Hosted By
-    <a href="http://www.codeweavers.com/"><img src="<?php echo BASE; ?>images/cw_logo_sm.png" alt="CodeWeavers"
-    title="CodeWeavers - Run Windows applications and games on Mac and Linux"></a>
+    <a href="http://www.claunia.com/"><img src="<?php echo BASE; ?>images/claunia_logo.jpg" width="131" height="60" alt="Claunia.com"></a>
 </div>
 
 </body>
