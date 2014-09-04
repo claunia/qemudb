@@ -25,7 +25,7 @@ if(!empty($aClean['sSubmit']))
 
     $oVersion = new Version($aClean['iVersionId']);
 
-    apidb_header("Edit Application Version");
+    apidb_header("Edit Operating System Version");
 
     echo "<div class='default_container'>\n";
 

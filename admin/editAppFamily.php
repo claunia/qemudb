@@ -32,12 +32,12 @@ else
     
     if(!$oApp)
     {
-        util_show_error_page_and_exit('Application does not exist');
+        util_show_error_page_and_exit('Operating system does not exist');
     }
     
     if($_SESSION['current']->showDebuggingInfos()) { echo "<p align=center><b>appName:</b> $oApp->sName </p>"; }
 
-     apidb_header("Edit Application Family");
+     apidb_header("Edit Operating System Family");
 
     echo "<form method=\"post\" action=\"editAppFamily.php\">\n";
 

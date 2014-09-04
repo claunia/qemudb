@@ -12,6 +12,6 @@ require(BASE."include/"."incl.php");
 
 $iId = getInput('iCatId', $aClean);
 
-util_redirect_and_exit(BASE."objectManager.php?sClass=category&iId=$iId&sAction=view&sTitle=Browse+Applications");
+util_redirect_and_exit(BASE."objectManager.php?sClass=category&iId=$iId&sAction=view&sTitle=Browse+Operating+Systems");
 
 ?>

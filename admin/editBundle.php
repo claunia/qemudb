@@ -25,9 +25,9 @@ if($aClean['sCmd'])
         $hResult = query_parameters("DELETE FROM appBundle WHERE appId ='?' AND bundleId = '?'",
                                     $aClean['iAppId'], $aClean['iBundleId']);
         if($hResult)
-            addmsg("App deleted from bundle", "green");
+            addmsg("OS deleted from bundle", "green");
         else
-            addmsg("Failed to delete app from bundle!", "red");
+            addmsg("Failed to delete OS from bundle!", "red");
     }
     if($aClean['sCmd'] == "add")
     {
@@ -36,22 +36,22 @@ if($aClean['sCmd'])
                                     $aClean['iBundleId'],
                                     $aClean['iAppId']);
         if($hResult)
-            addmsg("App $appId added to Bundle".$aClean['iBundleId'], "green");
+            addmsg("OS $appId added to Bundle".$aClean['iBundleId'], "green");
     }
 }
 
 
-apidb_header("Edit Application Bundle");
+apidb_header("Edit Operating System Bundle");
 
 $hResult = query_parameters("SELECT bundleId, appBundle.appId, appName FROM appBundle, appFamily ".
                             "WHERE bundleId = '?' AND appFamily.appId = appBundle.appId",
                             $aClean['iBundleId']);
 
-echo html_frame_start("Apps in this Bundle","300",'',0);
+echo html_frame_start("OSes in this Bundle","300",'',0);
 echo "<table width='100%' border=0 cellpadding=3 cellspacing=0>\n\n";
 	    
 echo "<tr class=color4>\n";
-echo "    <td><font color=white> Application Name </font></td>\n";
+echo "    <td><font color=white> Operating System Name </font></td>\n";
 echo "    <td><font color=white> Delete </font></td>\n";
 echo "</tr>\n\n";	    
 
@@ -76,7 +76,7 @@ if($hResult && query_num_rows($hResult))
 {
     /* indicate to the user that there are no apps in this bundle at the moment */
     echo "<tr>\n";
-    echo " <td colspan=2 align=center><b>No applications in this bundle</b></td>\n";
+    echo " <td colspan=2 align=center><b>No operating systems in this bundle</b></td>\n";
     echo "</tr>\n";
 }
 
@@ -85,7 +85,7 @@ echo html_frame_end();
 
 echo "<form method=post action=editBundle.php>\n";
 
-echo html_frame_start("Application List (double click to add)","",'',2);
+echo html_frame_start("Operating System List (double click to add)","",'',2);
 build_app_list();
 echo html_frame_end();
     

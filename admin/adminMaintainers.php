@@ -27,7 +27,7 @@ if(!$hResult || !query_num_rows($hResult))
 {
     // no apps
     echo html_frame_start("","90%");
-    echo '<p><b>There are no application maintainers.</b></p>',"\n";
+    echo '<p><b>There are no operating system maintainers.</b></p>',"\n";
     echo html_frame_end("&nbsp;");         
 }
 else
@@ -41,7 +41,7 @@ else
     echo "<tr class=color4>\n";
     echo "    <td><font color=white>Submission Date</font></td>\n";
     echo "    <td><font color=white>Maintainer</font></td>\n";
-    echo "    <td><font color=white>Application</font></td>\n";
+    echo "    <td><font color=white>Operating System</font></td>\n";
     echo "    <td><font color=white>Version</font></td>\n";
     echo "    <td align=\"center\">Action</td>\n";
     echo "</tr>\n\n";
