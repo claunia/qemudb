@@ -251,14 +251,18 @@ class version {
             }
         }
 
+		// QEMU
         if($this->iqsysId && ($this->iqsysId!=$oVersion->iqsysId))
         {
+            $oqSysBefore = new qemuSystem($oVersion->iqsysId);
+            $oqSysAfter = new qemuSystem($this->iqsysId);
+        
             if(!query_parameters("UPDATE appVersion SET qsysId = '?' WHERE versionId = '?'",
                                  $this->iqsysId, $this->iVersionId))
                 return FALSE;
 
-            $sWhatChanged .= "System was changed from $oVersion->iqsysId to ".
-                             "$this->iqsysId.\n\n";
+            $sWhatChanged .= "System was changed from $oqSysBefore->sDescription to ".
+                             "$oqSysAfter->sDescription.\n\n";
         }
 
         if($this->objectGetState() != $oVersion->objectGetState())
@@ -866,7 +870,7 @@ class version {
 
         // cat
         $oCategory = new Category($oApp->iCatId);
-        $oCategory->displayPath($oApp->iAppId, $this->iVersionId);
+        $oCategory->displayPath($oApp->iAppId, $this->iVersionId, $this->iqsysId);
   
         // set URL
         $appLinkURL = ($oApp->sWebpage) ? trimmed_link($oApp->sWebpage,30) : "&nbsp;";
@@ -926,8 +930,12 @@ class version {
         }
 
         // rating Area
-                echo "<tr class=\"$sRatingColor\" valign=\"top\"><td><b>Rating</b></td><td>".$sRating."</td></tr>\n";
+        echo "<tr class=\"$sRatingColor\" valign=\"top\"><td><b>Rating</b></td><td>".$sRating."</td></tr>\n";
         echo "<tr class=\"$sRatingColor\" valign=\"top\"><td><b>QEMU Version</b></td><td>".$sRelease."</td></tr>\n";
+
+		// QEMU
+		$oqsysrating = new qemuSystem($this->iqsysId);
+		echo "<tr class=\"$sRatingColor\" valign=\"top\"><td><b>Emulated system</b></td><td>".$oqsysrating->sDescription."</td></tr>\n";
 
         // Download URLs
         if($sDownloadurls = downloadurl::display($this->iVersionId))
@@ -1277,8 +1285,12 @@ class version {
             $oTableRow->AddCell($oTableCell);
 
             $oTableCell = new TableCell("QEMU version");
-            $oTableCell->SetWidth("80");
+            $oTableCell->SetWidth("100");
             $oTableRow->AddCell($oTableCell);
+
+			$oTableCell = new TableCell("Emulated system");
+			$oTableCell->SetWidth("80");
+			$oTableRow->AddCell($oTableCell);
 
             $oTableCell = new TableCell("Test results");
             $oTableCell->SetWidth("80");
@@ -1338,6 +1350,12 @@ class version {
                     $oTableCell = new TableCell($oVersion->sTestedRelease);
                     $oTableCell->SetAlign("center");
                     $oTableRow->AddCell($oTableCell);
+                    
+                    // QEMU
+					$oqsysrating = new qemuSystem($oVersion->iqsysId);
+					$oTableCell = new TableCell($oqsysrating->sDescription);
+					$oTableCell->SetAlign("left");
+					$oTableRow->AddCell($oTableCell);
 
                     $oTableCell = new TableCell(testData::get_testdata_count_for_versionid($oVersion->iVersionId));
                     $oTableCell->SetAlign("center");

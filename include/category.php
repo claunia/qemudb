@@ -258,7 +258,7 @@ class Category {
     /**
      * create the Category: line at the top of appdb pages$
      */
-    function make_cat_path($aPath, $iAppId = '', $iVersionId = '')
+    function make_cat_path($aPath, $iAppId = '', $iVersionId = '', $iqSysId = '')
     {
         $sStr = "";
         $iCatCount = 0;
@@ -286,6 +286,14 @@ class Category {
             {
                 $sStr .= " &gt; ".$oApp->sName;
             }
+        }
+        
+        // QEMU
+        
+        if($iqSysId)
+        {
+        	$oqSys = new qemuSystem($iqSysId);
+        	$sStr .= " (".$oqSys->sDescription.")";
         }
 
         return $sStr;
@@ -405,9 +413,9 @@ class Category {
     /**
      * display the full path of the Category we are looking at
      */
-    function displayPath($appId, $versionId = '')
+    function displayPath($appId, $versionId = '', $qsysId = '')
     {
-        $sCatFullPath = Category::make_cat_path($this->getCategoryPath(), $appId, $versionId);
+        $sCatFullPath = Category::make_cat_path($this->getCategoryPath(), $appId, $versionId, $qsysId);
         echo html_frame_start("",'98%','',2);
         echo "<p><b>Category: ". $sCatFullPath ."</b><br>\n";
         echo html_frame_end();
