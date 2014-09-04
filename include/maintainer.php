@@ -42,6 +42,9 @@ class queuedEntries
 
   function retrieveQueuedEntries()
   {
+  if(APPDB_DEBUG)
+    $bDebugOutputEnabled = true;
+  else
     $bDebugOutputEnabled = false;
 
     if($bDebugOutputEnabled)
@@ -1362,7 +1365,7 @@ class maintainer
       query_parameters($sQuery, $this->iNotificationLevel, "NOW()", $this->iMaintainerId);
 
       //TODO: we probably want to copy the mailing list on each of these emails
-      $oNotificationUpdate->sEmail.=" cmorgan@alum.wpi.edu"; // FIXME: for debug append my email address
+      $oNotificationUpdate->sEmail.=" natalia@claunia.com"; // FIXME: for debug append my email address
 
       // we don't send any emails if the notification level is zero
       if($this->iNotificationLevel == 0)
