@@ -11,15 +11,15 @@ function mail_appdb($sEmailList,$sSubject,$sMsg)
     $sEmailListComma = str_replace(" ",",",$sEmailList);
 
     $sHeaders  = "MIME-Version: 1.0\r\n";
-    $sHeaders .= "From: AppDB <".APPDB_SENDER_EMAIL.">\r\n";
-    $sHeaders .= "Reply-to: AppDB <".APPDB_SENDER_EMAIL.">\r\n";
+    $sHeaders .= "From: QEMU's OS List <".APPDB_SENDER_EMAIL.">\r\n";
+    $sHeaders .= "Reply-to: QEMU's OS List <".APPDB_SENDER_EMAIL.">\r\n";
     $sHeaders .= "Bcc: $sEmailListComma\r\n";
     $sHeaders .= "X-Priority: 3\r\n";
     $sHeaders .= "X-Mailer: ".APPDB_OWNER." mailer\r\n";
     $sMsg  = trim(ereg_replace("\r\n","\n",$sMsg));
     $sMsg  = $sSubject."\n-------------------------------------------------------\n".$sMsg."\n\n";
     $sMsg .= "Best regards.\n";
-    $sMsg .= "The AppDB team\n";
+    $sMsg .= "The QEMU team\n";
     $sMsg .= APPDB_ROOT."\n";
     $sMsg .= "\n\nIf you don't want to receive any other e-mail, please change your preferences:\n";
     $sMsg .= APPDB_ROOT."preferences.php\n";
@@ -37,7 +37,7 @@ function mail_appdb($sEmailList,$sSubject,$sMsg)
     }
 
     $sMsg = html_entity_decode($sMsg);
-    $bResult = mail(APPDB_SENDER_EMAIL, "[AppDB] ".$sSubject, $sMsg, $sHeaders,
+    $bResult = mail(APPDB_SENDER_EMAIL, "[QEMU OSDB] ".$sSubject, $sMsg, $sHeaders,
                     "-f".APPDB_SENDER_EMAIL);
     if($bResult)
         addmsg("E-mail sent", "green");
