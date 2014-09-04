@@ -1,31 +1,31 @@
-<!--TITLE: Application Database FAQ -->
+<!--TITLE: OS Database FAQ -->
 
-<h3>Application Database FAQ</h3>
+<h3>OS Database FAQ</h3>
 
 <p>This FAQ answers questions related to the usage of the
-Application Database.</p>
+OS Database.</p>
 
 <ul>
 
-<p><b>Q: What is the Application Database?</b></p>
+<p><b>Q: What is the OS Database?</b></p>
 <blockquote>
-<p><b>A:</b> The Application Database is a repository for
-Windows application compatibility information with Wine.
+<p><b>A:</b> The OS Database is a repository for
+operating system compatibility information with QEMU.
 In particular it provides the following information:<br>
-(see the <a href="/objectManager.php?sClass=application&amp;iId=296">Visual FoxPro</a> entry for an
+(see the <a href="../objectManager.php?sClass=application&amp;iId=2">Windows NT</a> entry for an
 example)<p>
 <ul>
-  <li>Whether a given application works at all with Wine.</li>
-  <li>If it is partially working, then which areas of the application
+  <li>Whether a given operating system works at all with Wine.</li>
+  <li>If it is partially working, then which areas of it
       have problems.</li>
-  <li>How to install and get that application working best.</li>
+  <li>How to install and get that operating system working best.</li>
 </ul>
-<p>And if the Windows application you want most to use with Wine does not
-work, it lets you vote for it to bring it to the attention of Wine
+<p>And if the operating system you want most to use with QEMU does not
+work, it lets you vote for it to bring it to the attention of QEMU
 developers.</p>
 </blockquote>
 
-<p><b>Q: What is Wine?</b></p>
+<p><b>Q: What is QEMU?</b></p>
 <blockquote>
 <p><b>A:</b>Think of Wine as a Windows compatibility layer. Wine does not require
 Microsoft Windows, as it is a completely alternative implementation
@@ -43,31 +43,30 @@ allowing many unmodified Windows binaries to run on x86-based Unixes, including
 
 <p><b>Q: What are the benefits of this Application Database?</b></p>
 <blockquote>
-<p><b>A:</b> The Application database benefits both Wine developers and users.
-It lets Wine developers know which applications the community most wants to
-see working. And it lets Wine user know beforehand if their application will
-work in Wine, and also what are the tricks to get it working best.<p>
+<p><b>A:</b> QEMU is a generic and open source machine emulator and virtualizer.<br>
+When used as a machine emulator, QEMU can run OSes and programs made for one machine (e.g. an ARM board) on a different machine (e.g. your own PC). By using dynamic translation, it achieves very good performances.<br>
+When used as a virtualizer, QEMU achieves near native performances by executing the guest code directly on the host CPU. QEMU supports virtualization when executing under the Xen hypervisor or using the KVM kernel module in Linux. When using KVM, QEMU can virtualize x86, server and embedded PowerPC, and S390 guests.<p>
 </blockquote>
 
-<p><b>Q: How does a new application get added to the database?</b></p>
+<p><b>Q: How does a new operating system get added to the database?</b></p>
 <blockquote>
-<p><b>A:</b> Any registered user can submit an application. Use the <a href="../objectManager.php?sClass=application_queue&sTitle=Submit+Application&sAction=add">Submit App</a> link in the AppDB sidebar to add an entry; it will be processed by an admin before becoming visible to all users. You can make changes to your queued entries by visiting the <a href="../queueditems.php">Your Queued Items</a> page.</p>
+<p><b>A:</b> Any registered user can submit an application. Use the <a href="../objectManager.php?sClass=application_queue&sTitle=Submit+Application&sAction=add">Submit OS</a> link in the OS DB sidebar to add an entry; it will be processed by an admin before becoming visible to all users. You can make changes to your queued entries by visiting the <a href="../queueditems.php">Your Queued Items</a> page.</p>
 </blockquote>
 
 <p><b>Q: How can I submit screenshots?</b></p>
 <blockquote>
-<p><b>A:</b> We love to hear from our users. Send those helpful screenshots by clicking on any screenshot image you will see in the specific version page of the application you want to add a screenshot for. If you are not a maintainer, your screenshot will be reviewed and will then be added to the database.</p>
+<p><b>A:</b> Send those helpful screenshots by clicking on any screenshot image you will see in the specific version page of the application you want to add a screenshot for. If you are not a maintainer, your screenshot will be reviewed and will then be added to the database.</p>
 </blockquote>
 
 <p><b>Q: How can I submit how-to's?</b></p>
 <blockquote>
-<p><b>A:</b>If you are not a maintainer, you can't create new official How-to's. So the best way to proceed is to  post your How-to as a comment in the specific version page of the application of interest. A maintainer might then choose to add your How-to as an official How-to for this database entry.</p>
+<p><b>A:</b>If you are not a maintainer, you can't create new official How-to's. So the best way to proceed is to post your How-to as a comment in the specific version page of the application of interest. A maintainer might then choose to add your How-to as an official How-to for this database entry.</p>
 </blockquote>
 
 
-<p><b>Q: How do I become an Application Database maintainer?</b></p>
+<p><b>Q: How do I become an Operating System Database maintainer?</b></p>
 <blockquote>
-<p><b>A:</b> Pretty much anyone supporting Wine is welcome (begged?) to be an application maintainer.
+<p><b>A:</b> Pretty much anyone supporting QEMU is welcome (begged?) to be an application maintainer.
 Simply click on the button you will find in the application overview or specific version page to send your request. An administrator will then review your proposal and add you to the maintainer's team for this application or version. Once we have a community of maintainers, we hope that community will further refine the policies and procedures.</p>
 </blockquote>
 
@@ -79,9 +78,9 @@ Simply click on the button you will find in the application overview or specific
 
 <p><b>Q: What is meant by the term &#8216;vendor&#8217;?</b></p>
 <blockquote>
-<p><b>A:</b> The vendor is the developer of an application.</p>
+<p><b>A:</b> The vendor is the developer of an operating system.</p>
 </blockquote>
 </ul>
 
 If you have more questions you would like to add to our FAQ, please contact us
-at <a href="mailto:appdb@winehq.org">appdb@winehq.org</a>.
+at <a href="mailto:natalia@claunia.com">natalia@claunia.com</a> or at the <a href="http://www.qemu.org/lists.html">mailing lists</a>.

@@ -1,18 +1,18 @@
 <!--TITLE: Voting Help -->
 
-<h3>Application Voting System Help</h3>
+<h3>Operating System Voting System Help</h3>
 
 <p>
-The Application Database features a voting system that allows you to pick which <b>3</b> application versions
-you would MOST like to see running in Wine.
+The Operating System Database features a voting system that allows you to pick which <b>3</b> operating system versions
+you would MOST like to see running in QEMU.
 </p>
 
 <p><b>Step by Step Help on Voting</b></p>
 <ol>
 
-<li><p>Log in to the Application Database.</p></li>
+<li><p>Log in to the Operating System Database.</p></li>
 
-<li><p>Browse to the application version you wish to add to your vote list.</p></li>
+<li><p>Browse to the operating system version you wish to add to your vote list.</p></li>
 
 <li><p>In the table showing name, license, rating etc., click on &#8216;Vote&#8217;.</p></li>
 
@@ -27,9 +27,9 @@ you would MOST like to see running in Wine.
 
 <ul>
 
-   <li><i>Please</i> vote for applications which will benefit the
-   community.  Don't vote for applications that are known to be working well. 
-   We know Solitaire works.  Voting for it would not make much sense.</li>
+   <li><i>Please</i> vote for operating systems which will benefit the
+   community.  Don't vote for operating systems that are known to be working well. 
+   We know MS-DOS works.  Voting for it would not make much sense.</li>
 
    <li>You can clear your vote at any time. Browse to any application
    version, select &#8216;Vote&#8217; from the table showing name, license, rating etc., then choose the slots you wish to clear and press &#8216;Delete&#8217;.</p></li>

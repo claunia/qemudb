@@ -1,0 +1,58 @@
+<!--TITLE: General help on creating a new entry -->
+
+<h3>General help on creating a new entry</h3>
+
+<p>
+This page gives basic information on how to add a new entry.
+</p>
+
+<p>
+In this new version of the operating system support list, all entries will be checked by an administrator before becoming public.<br>
+Any entry sent that violates these guidelines will be rejected.
+</p>
+
+<h4>What are you expected to indicate</h4>
+<ul>
+<li>
+What you have tested and works.<br>
+This is, you must indicate what graphics cards did you use, command line parameters, special hacks, network cards and sound cards.
+</li>
+<li>
+If the operating system does not include a driver, or it is not available at all, you MUST NOT consider the emulated device is not working.<br>
+You MUST consider it is not working when a driver is avaiable, it is known that works with real devices, and it is not working with the emulated device.</li>
+<li>
+If you test a Linux you must indicate the base distribution and revision.<br>
+If your distribution has updated the Linux kernel version without changing the distribution revision, that change and new version MUST be indicated in test comments.</li>
+<li>
+You MUST take on account that some operating system version have a change name from the real operating system name.<br>
+Examples following:<br>
+<ul>
+<li>Windows NT (operating system name) has following name changes: Windows XP, Windows Vista, Windows 2003, Windows 2008, Windows 7</li>
+<li>OS/2 (operating system name) has following name changes: OS/2 Warp, eComStation</li>
+<li>BeOS (operating system name) has following name changes: BeOS, BeIA, Zeta</li>
+</ul>
+</li>
+<li>
+You SHOULD take on account that some operating system's name change is enough justify to consider them different operating systems.<br>
+For example, while NeXTStep, OpenStep, Rhapsody and Mac OS X are just evolutions of the same operating system, heavy changes in kernel, API and developer justify them to be different operating systems.</li>
+<li>
+You SHOULD also take on account that some operating systems are just called in a variety of names in the same time period, without a real reason for that.<br>
+For example, AmigaOS, Amiga Workbench and Commodore Workbench, all do refer to the exact same operating system, and by convention, only one name will be used in the entries.
+</li>
+<li>
+Clones (AmigaOS vs MorphOS), reworks (BeOS vs Haiku), distributions (Debian Linux vs Gentoo Linux), kernels (Debian Linux vs Debian Hurd) and open source editions (Darwin vs Mac OS X or Solaris vs OpenSolaris) ARE different operating systems and MUST be reflected as so in the entries.
+</ul>
+
+<h4>If it fails</h4>
+<ul>
+<li>
+You MUST include a screenshot of the operating system failing.<br>
+Screenshot of QEMU crashing is not enough, neither welcome.<br>
+If the operating system makes QEMU crash without showing a message, DO NOT include a screenshot.
+</li>
+<li>
+You MUST send a message to the developers mailing list about the fail.<br>
+The developers cannot check on a timely basis the support list, and will miss the fail if you do not do so.
+</ul>
+
+<p>If you have additional questions, please do not hesitate to contact us on <a href="mailto:natalia@claunia.com">natalia@claunia.com</a>.</p>
