@@ -22,7 +22,7 @@ require_once(BASE."include/objectManager.php");
 if(get_magic_quotes_gpc())
 {
     echo "<b>Please disable the magic quotes GPC PHP setting. See <a href=\"http://us2.php.net/manual/en/ref.info.php#ini.magic-quotes-gpc\"> this page</a> for more information</b><br><br>";
-    echo "AppDB php code assumes magic quotes are disabled.<br><br>";
+    echo "OS DB php code assumes magic quotes are disabled.<br><br>";
     echo "Magic quotes are a bad idea for a few reasons.<br><br>";
     echo "First is that php calls <b>addslashes()</b> on all \$_POST, \$_REQUEST and cookie variables ";
     echo "if magic quotes is enabled. ";

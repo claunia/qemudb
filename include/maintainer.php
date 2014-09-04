@@ -276,11 +276,11 @@ class maintainer
                         $sName = $oApp->sName;
                     }
 
-                    $sSubject =  "Application Maintainer Request Report";
+                    $sSubject =  "OS Maintainer Request Report";
                     $sMsg  = "Your application to be the maintainer of $sName has been accepted.\n";
                     $sMsg .= "$sURL\n";
                     $sMsg .= "$this->sReplyText\n";
-                    $sMsg .= "We appreciate your help in making the Application Database better for all users.\n\n";
+                    $sMsg .= "We appreciate your help in making the Operating Systems Database better for all users.\n\n";
 
                     mail_appdb($sEmail, $sSubject ,$sMsg);
                 }
@@ -292,9 +292,9 @@ class maintainer
             query_parameters("DELETE from appMaintainers WHERE userId = '?' AND maintainerId = '?' AND state = 'queued'", $this->iUserId, $this->iMaintainerId);
 
             if($oUser->isSuperMaintainer($this->iAppId) && !$this->bSuperMaintainer)
-                $sStatusMessage = "<p>User is already a super maintainer of this application</p>\n";
+                $sStatusMessage = "<p>User is already a super maintainer of this OS</p>\n";
             else
-                $sStatusMessage = "<p>User is already a maintainer/super maintainer of this application/version</p>\n";
+                $sStatusMessage = "<p>User is already a maintainer/super maintainer of this OS/version</p>\n";
         }
 
         /* Delete any maintainer entries the user had for the application's versions,
@@ -313,11 +313,11 @@ class maintainer
         {
             $oApp = new Application($oRow->appId);
             $oVersion = new Version($oRow->versionId);
-            $sSubject =  "Application Maintainer Request Report";
+            $sSubject =  "OS Maintainer Request Report";
             $sMsg  = "Your application to be the maintainer of ".$oApp->sName." ".$oVersion->sName." was rejected. ";
             $sMsg .= $this->sReplyText;
             $sMsg .= "";
-            $sMsg .= "-The AppDB admins\n";
+            $sMsg .= "-The OS DB admins\n";
 
            mail_appdb($sEmail, $sSubject ,$sMsg);
         }
@@ -640,7 +640,7 @@ class maintainer
     {
         $oTableRow = new TableRow();
         $oTableRow->AddTextCell("Submission Date");
-        $oTableRow->AddTextCell("Application Name");
+        $oTableRow->AddTextCell("OS Name");
         $oTableRow->AddTextCell("Version");
         $oTableRow->AddTextCell("Super maintainer?");
         $oTableRow->AddTextCell("Submitter");
@@ -667,23 +667,23 @@ class maintainer
 
     function objectDisplayAddItemHelp($aClean)
     {
-        echo "<p>This page is for submitting a request to become an application maintainer.\n";
-        echo "An application maintainer is someone who runs the application \n";
+        echo "<p>This page is for submitting a request to become an OS maintainer.\n";
+        echo "An OS maintainer is someone who runs the OS \n";
         echo "regularly and who is willing to be active in reporting regressions with newer \n";
-        echo "versions of Wine and to help other users run this application under Wine.</p>";
-        echo "<p>Being an application maintainer comes with new rights and new responsibilities; please be sure to read the <a href=\"".BASE."/help/?sTopic=maintainer_guidelines\">maintainer's guidelines</a> before to proceed.</p> ";
-        echo "<p>We ask that all maintainers explain why they want to be an application maintainer,\n";
+        echo "versions of QEMU and to help other users run this OS under QEMU.</p>";
+        echo "<p>Being an OS maintainer comes with new rights and new responsibilities; please be sure to read the <a href=\"".BASE."/help/?sTopic=maintainer_guidelines\">maintainer's guidelines</a> before to proceed.</p> ";
+        echo "<p>We ask that all maintainers explain why they want to be an OS maintainer,\n";
         echo "why they think they will do a good job and a little about their experience\n";
         echo "with Wine.  This is both to give you time to\n";
-        echo "think about whether you really want to be an application maintainer and also for the\n";
-        echo "appdb admins to identify people that are best suited for the job.  Your request\n";
-        echo "may be denied if there are already a handful of maintainers for this application or if you\n";
+        echo "think about whether you really want to be an OS maintainer and also for the\n";
+        echo "OS DB admins to identify people that are best suited for the job.  Your request\n";
+        echo "may be denied if there are already a handful of maintainers for this OS or if you\n";
         echo "don't have the experience with Wine that is necessary to help other users out.</p>\n";
 
         if(!$aClean['iVersionId'])
         {
             echo "<p>Super maintainers are just like normal maintainers but they can modify EVERY version of\n";
-            echo "this application (and the application itself).  We don't expect you to run every version but at least to help keep\n";
+            echo "this OS (and the OS itself).  We don't expect you to run every version but at least to help keep\n";
             echo "the forums clean of stale and out-of-date information.</p>\n";
 
         }
@@ -742,7 +742,7 @@ class maintainer
 
             echo "<table width='100%' border=0 cellpadding=2 cellspacing=0>\n";
             echo "<tr valign=top><td class=color0>";
-            echo '<b>Application</b></td><td>'.$oApp->sName;
+            echo '<b>OS</b></td><td>'.$oApp->sName;
             echo '</td></tr>',"\n";
             if($aClean['iVersionId'])
             {
@@ -757,9 +757,9 @@ class maintainer
             echo "<input type='hidden' name='iSuperMaintainer' value='$iSuperMaintainer'>";
 
             if($iSuperMaintainer)
-                echo '<tr valign="top"><td class="color0"><b>Why you want to and should<br>be an application super maintainer</b></td><td><textarea name="sMaintainReason" rows="15" cols="70"></textarea></td></tr>',"\n";
+                echo '<tr valign="top"><td class="color0"><b>Why you want to and should<br>be an OS super maintainer</b></td><td><textarea name="sMaintainReason" rows="15" cols="70"></textarea></td></tr>',"\n";
             else
-                echo '<tr valign="top"><td class="color0"><b>Why you want to and should<br>be an application maintainer</b></td><td><textarea name="sMaintainReason" rows="15" cols="70"></textarea></td></tr>',"\n";
+                echo '<tr valign="top"><td class="color0"><b>Why you want to and should<br>be an OS maintainer</b></td><td><textarea name="sMaintainReason" rows="15" cols="70"></textarea></td></tr>',"\n";
 
             echo '</table>',"\n";
         } else
@@ -828,7 +828,7 @@ class maintainer
             echo "</td></tr>\n";
 
             // Show which other apps the user maintains
-            echo '<tr valign="top"><td class="color0" style=\'text-align:right\'><b>This user also maintains these apps:</b>';
+            echo '<tr valign="top"><td class="color0" style=\'text-align:right\'><b>This user also maintains these OSes:</b>';
             echo "<br /><a href=\"".BASE."objectManager.php?sClass=maintainerView".
                  "&iId={$this->iUserId}&sTitle=Maintained+Apps\">Detailed view</a>";
             echo '</td><td>',"\n";
@@ -848,7 +848,7 @@ class maintainer
                 }
             } else
             {
-                echo "User maintains no other applications";
+                echo "User maintains no other OSes.";
             }
 
             echo "</td></tr>\n";
@@ -860,13 +860,13 @@ class maintainer
             echo "<input type=\"hidden\" name=\"iVersionId\" value=\"".$oVersion->iVersionId."\">\n";
 
             //app name
-            echo '<tr valign=top><td class=color0 style=\'text-align:right\'><b>App Name:</b></td>',"\n";
+            echo '<tr valign=top><td class=color0 style=\'text-align:right\'><b>OS Name:</b></td>',"\n";
             echo "<td>".$oApp->objectMakeLink()."</td></tr>\n";
 
             //version
             if($oVersion->iVersionId)
             {
-                echo '<tr valign=top><td class=color0 style=\'text-align:right\'><b>App Version:</b></td>',"\n";
+                echo '<tr valign=top><td class=color0 style=\'text-align:right\'><b>OS Version:</b></td>',"\n";
                 echo "<td>".$oVersion->objectMakeLink()."</td></tr>\n";
             }
 
@@ -1137,7 +1137,7 @@ class maintainer
       {
         $oApp = new Application($this->iAppId);
         $sSubject.= $oApp->sName;
-        $sMsg.='application, '.$oApp->sName.'('.$oApp->objectMakeUrl().'), that you maintain.'."\n\n";
+        $sMsg.='OS, '.$oApp->sName.'('.$oApp->objectMakeUrl().'), that you maintain.'."\n\n";
       } else
       {
         $sFullname = version::fullName($this->iVersionId);
@@ -1182,7 +1182,7 @@ class maintainer
         // FIXME: should use a function to generate these urls and use it here and
         // in sidebar_maintainer.php and sidebar_admin.php
         $sMsg = 'Please visit the version queue ('.APPDB_ROOT."objectManager.php?sClass=version_queue&amp;bIsQueue=true&amp;sTitle=".
-          'Version%20Queue) to process queued versions for applications you maintain.'."\n";
+          'Version%20Queue) to process queued versions for OSes you maintain.'."\n";
       }
 
       //////////////////
@@ -1221,7 +1221,7 @@ class maintainer
 
         // FIXME: should use a function to generate these urls and use it here and
         // in sidebar_maintainer.php and sidebar_admin.php
-        $sMsg .= 'Please visit the AppDB Test Data Queue'.
+        $sMsg .= 'Please visit the OS DB Test Data Queue'.
           '('.APPDB_ROOT.'objectManager.php?sClass=testData_queue&amp;'.
           'bIsQueue=true&amp;sTitle=Test%20Results%20Queue)'.
           ' to process queued test data for versions you maintain.'."\n";
@@ -1334,9 +1334,9 @@ class maintainer
               // we'll have to remove their maintainership for this application/version
               // so a more active person can fill the spot
         $oNotificationUpdate->sMsg.= "\nThis your second notification of queued entries.";
-        $oNotificationUpdate->sMsg.= " If the queued entries are not processsed within";
+        $oNotificationUpdate->sMsg.= " If the queued entries are not processed within";
         $oNotificationUpdate->sMsg.= " the next ".iNotificationIntervalDays. " days we will";
-        $oNotificationUpdate->sMsg.= " remove your maintainership for this application/version";
+        $oNotificationUpdate->sMsg.= " remove your maintainership for this OS/version";
         $oNotificationUpdate->sMsg.= " so a more active person can fill the spot.".
 				     " It's important to process queued items in a timely manner".
 				     " to provide a good user experience.";
@@ -1345,7 +1345,7 @@ class maintainer
         $oNotificationUpdate->sMsg.= "\nThis your third notification of queued entries.";
         $oNotificationUpdate->sMsg.= " Because your queued entries have not been processed";
         $oNotificationUpdate->sMsg.= " after two notifications we are removing your maintainer";
-        $oNotificationUpdate->sMsg.= " role for this application/version. Removing inactive";
+        $oNotificationUpdate->sMsg.= " role for this OS/version. Removing inactive";
         $oNotificationUpdate->sMsg.= " maintainers makes our job easier, since we want to know"
 				     ." not to wait for a maintainer to oversee submissions.";
         $oNotificationUpdate->sMsg.= " If you are still interested in being a maintainer please";
@@ -1356,8 +1356,8 @@ class maintainer
       
       // common end of our message
       $oNotificationUpdate->sMsg.= "\n\nThanks,\n";
-      $oNotificationUpdate->sMsg.= "Appdb Admins\n";
-      $oNotificationUpdate->sMsg.= "<appdb@winehq.org>";
+      $oNotificationUpdate->sMsg.= "OS Database Admins\n";
+      $oNotificationUpdate->sMsg.= "<natalia@claunia.com>";
 
       // save the notification level and notification time back into the database
       $sQuery = "update appMaintainers set notificationLevel = '?', notificationTime = ?".

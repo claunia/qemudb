@@ -148,7 +148,7 @@ class ObjectManager
 	"problem you have with this app, if there are not bugs filed already".
 	" at http://bugs.winehq.org.  If you want some advice or guidance on".
 	" this, please visit http://forum.winehq.org";
-        $this->aCommonResponses[] = "Please do not paste debug output in the AppDB,".
+        $this->aCommonResponses[] = "Please do not paste debug output in the OS DB,".
 	" it belongs only as an attachment on bugzilla.";
         $this->aCommonResponses[] = "We appreciate your submission but it".
           " needs to be more detailed before it will be most useful to other users of".

@@ -160,7 +160,7 @@ class Application {
                 $oMaintainer = new Maintainer();
                 $oMaintainer->iAppId = $this->iAppId;
                 $oMaintainer->iUserId = $_SESSION['current']->iUserId;
-                $oMaintainer->sMaintainReason = "This user submitted the application; auto-queued.";
+                $oMaintainer->sMaintainReason = "This user submitted the OS; auto-queued.";
                 $oMaintainer->bSuperMaintainer = 1;
                 $oMaintainer->create();
             }
@@ -168,7 +168,7 @@ class Application {
             return true;
         } else
         {
-            addmsg("Error while creating a new application.", "red");
+            addmsg("Error while creating a new OS.", "red");
             return false;
         }
     }
@@ -349,7 +349,7 @@ class Application {
             $this->SendNotificationMail("reject");
 
             // the application has been rejected
-            addmsg("The application has been rejected.", "green");
+            addmsg("The OS has been rejected.", "green");
         }
     }
 
@@ -373,7 +373,7 @@ class Application {
             $this->SendNotificationMail();
 
             // the application has been re-queued
-            addmsg("The application has been re-queued.", "green");
+            addmsg("The OS has been re-queued.", "green");
         }
     }
 
@@ -394,8 +394,8 @@ class Application {
             switch($sAction)
             {
                 case "delete":
-                    $sSubject = "Submitted application deleted";
-                    $sMsg  = "The application you submitted (".$this->sName.
+                    $sSubject = "Submitted OS deleted";
+                    $sMsg  = "The OS you submitted (".$this->sName.
                              ") has been deleted.";
                 break;
             }
@@ -406,7 +406,7 @@ class Application {
             {
                 case "delete":
                     $sSubject = $this->sName." deleted";
-                    $sMsg = "The application '".$this->sName."' has been deleted.";
+                    $sMsg = "The OS '".$this->sName."' has been deleted.";
                 break;
             }
             $aMailTo = User::get_notify_email_address_list($this->iAppId);
@@ -426,24 +426,24 @@ class Application {
             switch($sAction)
             {
             case "add":
-                $sSubject =  "Submitted application accepted";
-                $sMsg  = "The application you submitted (".$this->sName.") has been accepted by ".$_SESSION['current']->sRealname.".\n";
+                $sSubject =  "Submitted OS accepted";
+                $sMsg  = "The OS you submitted (".$this->sName.") has been accepted by ".$_SESSION['current']->sRealname.".\n";
                 $sMsg .= "Administrator's Response:\n";
             break;
             case "reject":
-                $sSubject =  "Submitted application rejected";
-                $sMsg  = "The application you submitted (".$this->sName.") has been rejected by ".$_SESSION['current']->sRealname.".";
-                $sMsg .= "Clicking on the link in this email will allow you to modify and resubmit the application. ";
-                $sMsg .= "A link to your queue of applications and versions will also show up on the left hand side of the Appdb site once you have logged in. ";
+                $sSubject =  "Submitted OS rejected";
+                $sMsg  = "The OS you submitted (".$this->sName.") has been rejected by ".$_SESSION['current']->sRealname.".";
+                $sMsg .= "Clicking on the link in this email will allow you to modify and resubmit the OS. ";
+                $sMsg .= "A link to your queue of OSes and versions will also show up on the left hand side of the OS DB site once you have logged in. ";
                 $sMsg .= APPDB_ROOT."objectManager.php?sClass=application_queue".
                         "&amp;bIsQueue=true&amp;bIsRejected=true&amp;iId=".$this->iAppId."&amp;sTitle=".
-                        "Edit+Application\n";
+                        "Edit+OS\n";
                 $sMsg .= "Reason given:\n";
             break;
             }
 
             $sMsg .= $aClean['sReplyText']."\n";
-            $sMsg .= "We appreciate your help in making the Application Database better for all users.";
+            $sMsg .= "We appreciate your help in making the Operating Systems Database better for all users.";
 
             mail_appdb($oSubmitter->sEmail, $sSubject ,$sMsg);
         }
@@ -502,34 +502,34 @@ class Application {
                     if($this->iSubmitterId)
                     {
                         $oSubmitter = new User($this->iSubmitterId);
-                        $sMsg .= "This application has been submitted by ".$oSubmitter->sRealname.".";
+                        $sMsg .= "This OS has been submitted by ".$oSubmitter->sRealname.".";
                         $sMsg .= "\n";
                     }
                     if($aClean['sReplyText'])
                     {
-                        $sMsg .= "Appdb admin reply text:\n";
+                        $sMsg .= "OS DB admin reply text:\n";
                         $sMsg .= $aClean['sReplyText']."\n"; // append the reply text, if there is any 
                     }
 
-                    addmsg("The application was successfully added into the database.", "green");
+                    addmsg("The OS was successfully added into the database.", "green");
                 } else
                 {
                     $sSubject = $this->sName." has been submitted by ".$_SESSION['current']->sRealname;
-                    $sMsg .= "This application has been queued.";
+                    $sMsg .= "This OS has been queued.";
                     $sMsg .= "\n";
-                    addmsg("The application you submitted will be added to the database after being reviewed.", "green");
+                    addmsg("The OS you submitted will be added to the database after being reviewed.", "green");
                 }
             break;
             case "edit":
                 $sSubject =  $this->sName." has been modified by ".$_SESSION['current']->sRealname;
                 $sMsg  .= $this->objectMakeUrl()."\n";
-                addmsg("Application modified.", "green");
+                addmsg("OS modified.", "green");
             break;
             case "reject":
                 $sSubject = $this->sName." has been rejected by ".$_SESSION['current']->sRealname;
                 $sMsg .= APPDB_ROOT."objectManager.php?sClass=application_queue".
                         "&amp;bIsQueue=true&amp;bIsRejected=true&amp;iId=".$this->iAppId."&amp;sTitle=".
-                        "Edit+Application\n";
+                        "Edit+OS\n";
 
                 // if sReplyText is set we should report the reason the application was rejected 
                 if($aClean['sReplyText'])
@@ -538,7 +538,7 @@ class Application {
                     $sMsg .= $aClean['sReplyText']."\n"; // append the reply text, if there is any 
                 }
 
-                addmsg("Application rejected.", "green");
+                addmsg("OS rejected.", "green");
             break;
         }
         $sEmail = User::get_notify_email_address_list($this->iAppId);
@@ -562,9 +562,9 @@ class Application {
            name and the full editor displayed here */
         echo '<input type="hidden" name="bMainAppForm" value="true">'."\n";
 
-        echo html_frame_start("Application Form", "90%", "", 0);
+        echo html_frame_start("OS Form", "90%", "", 0);
         echo "<table class='color0' width='100%' border=0 cellpadding=2 cellspacing=0>\n";
-        echo '<tr valign=top><td class="color0"><b>Application name</b></td>',"\n";
+        echo '<tr valign=top><td class="color0"><b>OS name</b></td>',"\n";
         echo '<td><input size="20" type="text" name="sAppName" value="'.$this->sName.'"></td></tr>',"\n";
 
         // app Category
@@ -585,7 +585,7 @@ class Application {
         echo '</td></tr>',"\n";
 
         $oVendor = new vendor($this->iVendorId);
-        $sVendorHelp = "The developer of the application. ";
+        $sVendorHelp = "The developer of the OS. ";
         if(!$this->iAppId || $oVendor->objectGetState() != 'accepted')
         {
             if(!$this->iAppId)
@@ -626,7 +626,7 @@ class Application {
         echo '<tr valign=top><td class="color0"><b>Keywords</b></td>',"\n";
         echo '<td><input size="75%" type="text" name="sAppKeywords" value="'.$this->sKeywords.'"></td></tr>',"\n";
 
-        echo '<tr valign=top><td class="color0"><b>Application description (In your own words)</b></td>',"\n";
+        echo '<tr valign=top><td class="color0"><b>OS description (In your own words)</b></td>',"\n";
         echo '<td><p><textarea cols="80" rows="20" id="app_editor" name="shAppDescription">';
 
         echo $this->sDescription.'</textarea></p></td></tr>',"\n";
@@ -642,7 +642,7 @@ class Application {
                 "I would like to be a maintainer of the new version only<br>\n".
                 "<input type=\"radio\" name=\"iMaintainerRequest\" ". 
                 "value=\"".SUPERMAINTAINER_REQUEST."\">".
-                "I would like to be a maintainer of the entire application<br>\n";
+                "I would like to be a maintainer of the entire OS<br>\n";
 
             $sMaintainerOptionsSelected = str_replace(
                 "value=\"$this->iMaintainerRequest\"",
@@ -665,20 +665,20 @@ class Application {
         $errors = "";
 
         if (empty($aValues['iAppCatId']))
-            $errors .= "<li>Please enter a category for your application.</li>\n";
+            $errors .= "<li>Please enter a category for your OS.</li>\n";
 
         if (strlen($aValues['sAppName']) > 200 )
-            $errors .= "<li>Your application name is too long.</li>\n";
+            $errors .= "<li>Your OS name is too long.</li>\n";
 
         if (empty($aValues['sAppName']))
-            $errors .= "<li>Please enter an application name.</li>\n";
+            $errors .= "<li>Please enter an OS name.</li>\n";
 
         // No vendor entered, and nothing in the list is selected
         if (empty($aValues['sVendorName']) && !$aValues['iAppVendorId'])
             $errors .= "<li>Please enter a developer.</li>\n";
 
         if (empty($aValues['shAppDescription']))
-            $errors .= "<li>Please enter a description of your application.</li>\n";
+            $errors .= "<li>Please enter a description of your OS.</li>\n";
 
         return $errors;
     }
@@ -716,7 +716,7 @@ class Application {
         echo "<table width=\"100%\" border=\"0\" cellpadding=\"3\" cellspacing=\"1\">\n\n";
 
         echo "<tr class=\"color4\">\n";
-        echo "    <td>Application Name</td>\n";
+        echo "    <td>OS Name</td>\n";
         echo "    <td>Description</td>\n";
         echo "</tr>\n\n";
 
@@ -837,7 +837,7 @@ class Application {
             
             if($_SESSION['current']->isSuperMaintainer($this->iAppId) || $_SESSION['current']->hasPriv("admin"))
             {
-                echo '        <form method="post" name="sEdit" action="admin/editAppFamily.php"><input type="hidden" name="iAppId" value="'.$this->iAppId.'"><input type="submit" value="Edit application" class="button"></form>';
+                echo '        <form method="post" name="sEdit" action="admin/editAppFamily.php"><input type="hidden" name="iAppId" value="'.$this->iAppId.'"><input type="submit" value="Edit OS" class="button"></form>';
                 echo '<form method="post" action="objectManager.php?sClass=note&sAction=add&sTitle=Add+note&iAppId='.$this->iAppId.'&sNoteTitle=HOWTO&sReturnTo='.urlencode($this->objectMakeUrl()).'">';
                 echo '<input type="submit" value="Add note/how-to" />';
                 echo '</form>';
@@ -876,7 +876,7 @@ class Application {
         echo "\t</div>\n";                      // close the 'info_contents' div
         echo "</div>\n";                        // close the 'info_container' div
 
-        echo html_frame_end("For more details and user comments, view the versions of this application.");
+        echo html_frame_end("For more details and user comments, view the versions of this OS.");
 
         // display versions
         Version::displayList($this->getVersions());
@@ -917,7 +917,7 @@ class Application {
         $oTable->SetAlign("center");
 
         $oTableRow = new TableRow();
-        $oTableRow->AddTextCell("Application");
+        $oTableRow->AddTextCell("OS");
         $oTableRow->AddTextCell("Description");
         $oTableRow->AddTextCell("Developer");
         $oTableRow->AddTextCell("Submission Date");
@@ -957,7 +957,7 @@ class Application {
 
     public function objectGetClassDisplayName()
     {
-        return 'application';
+        return 'OS';
     }
 
     public function objectMakeUrl()
@@ -1098,7 +1098,7 @@ class Application {
         $aWineVersionIds = get_bugzilla_version_ids();
 
         $oFilter->AddFilterInfo('appVersion.rating', 'Rating', array(FILTER_EQUALS), FILTER_VALUES_ENUM, array('Platinum', 'Gold', 'Silver', 'Bronze', 'Garbage'));
-        $oFilter->AddFilterInfo('versions.id', 'Wine version', array(FILTER_EQUALS,FILTER_LESS_THAN,FILTER_GREATER_THAN), FILTER_VALUES_ENUM, $aWineVersionIds, $aWineVersions);
+        $oFilter->AddFilterInfo('versions.id', 'QEMU version', array(FILTER_EQUALS,FILTER_LESS_THAN,FILTER_GREATER_THAN), FILTER_VALUES_ENUM, $aWineVersionIds, $aWineVersions);
         $oFilter->AddFilterInfo('appCategory', 'Category', array(FILTER_OPTION_ENUM), FILTER_VALUES_OPTION_ENUM, $aCatIds, $aCatNames);
         $oFilter->AddFilterInfo('appVersion.license', 'License', array(FILTER_EQUALS), FILTER_VALUES_ENUM, $aLicenses);
         $oFilter->AddFilterInfo('appFamily.appName', 'Name', array(FILTER_CONTAINS, FILTER_STARTS_WITH, FILTER_ENDS_WITH), FILTER_VALUES_NORMAL);
@@ -1197,7 +1197,7 @@ class Application {
 
     public function objectDisplayQueueProcessingHelp()
     {
-        echo "<p>This is the list of application entries waiting to be processed.</p>\n";
+        echo "<p>This is the list of OS entries waiting to be processed.</p>\n";
         echo "<p>To view and process an entry, use the links under &#8216;Action&#8217;</p>";
     }
 
@@ -1206,36 +1206,38 @@ class Application {
         /* We don't display the full help on the page where you only input the app name */
         if(!$this->sName)
         {
-            echo "<p>First, please enter the name of the application you wish to add. ";
+            echo "<p>First, please enter the name of the OS you wish to add. ";
             echo "This will allow you to determine whether there is already ";
             echo "an entry for it in the database.</p>\n";
         } else
         {
-            echo "<p>This page is for submitting new applications to be added to the\n";
-            echo "database. The application will be reviewed by an AppDB Administrator,\n";
+            echo "<p>This page is for submitting new OSes to be added to the\n";
+            echo "database. The OS will be reviewed by an OS DB Administrator,\n";
             echo "and you will be notified via e-mail if it is added to the database or rejected.</p>\n";
             echo "<p><h2>Before continuing, please ensure that you have</h2>\n";
             echo "<ul>\n";
-            echo " <li>Entered a valid version for this application.  This is the application\n";
-            echo "   version, NOT the Wine version (which goes in the test results section of the template)</li>\n";
-            echo " <li>Tested this application under Wine.  There are tens of thousands of applications\n";
-            echo "   for Windows, we do not need placeholder entries in the database.  Please enter as complete \n";
+            echo " <li>Entered a valid version for this OS.  This is the OS\n";
+            echo "   version, NOT the QEMU version (which goes in the test results section of the template)</li>\n";
+            echo " <li>Tested this OS under QEMU.  As there are a large number of OSes,\n";
+            echo "   we do not need placeholder entries in the database.  Please enter as complete \n";
             echo "   as possible test results in the version template provided below</li>\n";
             echo "</ul></p>";
+/*
             echo "<p>Having app descriptions just sponsoring the app\n";
             echo "(yes, some vendors want to use the appdb for this) or saying &#8216;I haven't tried this app with Wine&#8217; ";
-            echo "will not help Wine development or Wine users. Application descriptions should be exactly that and only that, \n";
+            echo "will not help Wine development or Wine users. OS descriptions should be exactly that and only that, \n";
             echo "they should not contain any information about how well the app works, just what the app is. The same applies to the \n";
-            echo "version information, it should be only information on what is unique or different about that version of the application, \n";
+            echo "version information, it should be only information on what is unique or different about that version of the OS, \n";
             echo "not how well that version works or how great you think a new feature is.</p>\n";
+*/
             echo "<p>When you reach the \"Test Form\" part (What works, What doesn't work, etc) please be detailed \n";
             echo "about how well it worked and if any workarounds were needed but do NOT paste chunks of terminal output.</p>\n";
             echo "<p>Please write information in proper English with correct grammar and punctuation!</p>\n";            
-            echo "<b><span style=\"color:red\">Please only submit applications/versions that you have tested.\n";
+            echo "<b><span style=\"color:red\">Please only submit OSes/versions that you have tested.\n";
             echo "Submissions without test information or not using the provided template will be rejected.\n";
             echo "If you are unable to see the in-browser editors below, please try Firefox, Mozilla or Opera browsers.\n</span></b>";
-            echo "<p>After your application has been added, you will be able to submit screenshots for it, post";
-            echo " messages in its forums or become a maintainer to help others trying to run the application.</p>";
+            echo "<p>After your OS has been added, you will be able to submit screenshots for it, post";
+            echo " messages in its forums or become a maintainer to help others trying to run the OS.</p>";
         }
     }
 

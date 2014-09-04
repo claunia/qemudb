@@ -425,13 +425,13 @@ class User {
          if($this->isMaintainer())
          {
              $sSubject  = "Warning: inactivity detected";
-             $sMsg  = "You didn't log in in the past six months to the AppDB.\r\n";
+             $sMsg  = "You didn't log in in the past six months to the OS DB.\r\n";
              $sMsg .= "As a maintainer we would be pleased to see you once in a while.\r\n";
              $sMsg .= "Please log in or you will lose your maintainer's abilities in one month.\r\n";
          } else
          {
              $sSubject  = "Warning: inactivity detected";
-             $sMsg  = "You didn't log in in the past six months to the AppDB.\r\n";
+             $sMsg  = "You didn't log in in the past six months to the OS DB.\r\n";
              $sMsg .= "Please log in or your account will automatically be deleted in one month.\r\n";
          }
          $sMsg .= APPDB_ROOT."account.php?sCmd=login\r\n";

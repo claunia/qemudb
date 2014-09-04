@@ -122,7 +122,7 @@ function cmd_do_new()
         retry("new", "Failed to create account");
     } else
     {
-        addmsg("Unknown failure while creating new user.  Please report this problem to appdb admins.", "red");
+        addmsg("Unknown failure while creating new user.  Please report this problem to OS DB admins.", "red");
         retry("new", "Failed to create account");
     }
 }
@@ -144,8 +144,11 @@ function cmd_send_passwd()
         util_redirect_and_exit(apidb_fullurl("account.php?sCmd=login"));
     }
 
-    $shNote = '(<b>Note</b>: accounts for <b>appdb</b>.winehq.org and <b>bugs</b>.winehq.org '
-           .'are separated, so You might need to <b>create second</b> account for appdb.)';
+/*
+    $shNote = '(<b>Note</b>: accounts for the OS DB and <b>bugs</b>.claunia.com '
+           .'are separated, so You might need to <b>create second</b> account for OS DB.)';
+*/
+    $shNote = '';
 		
     $iUserId = User::exists($aClean['sUserEmail']);
     $sPasswd = User::generate_passwd();
@@ -154,7 +157,7 @@ function cmd_send_passwd()
     {
     	if ($oUser->update_password($sPasswd))
         {
-            $sSubject =  "Application DB Lost Password";
+            $sSubject =  "OS DB Lost Password";
             $sMsg  = "We have received a request that you lost your password.\r\n";
             $sMsg .= "We will create a new password for you. You can then change\r\n";
             $sMsg .= "your password at the Preferences screen.\r\n";

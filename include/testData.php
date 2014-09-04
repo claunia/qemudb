@@ -454,7 +454,7 @@ class testData{
             break;
             }
             $sMsg .= $aClean['sReplyText']."\n";
-            $sMsg .= "We appreciate your help in making the Application ".
+            $sMsg .= "We appreciate your help in making the Operating Systems ".
                     "Database better for all users.";
 
             mail_appdb($oSubmitter->sEmail, $sSubject ,$sMsg);
@@ -485,7 +485,7 @@ class testData{
                     }
                     if($aClean['sReplyText'])
                     {
-                        $sMsg .= "Appdb admin reply text:\n";
+                        $sMsg .= "OS DB admin reply text:\n";
                         $sMsg .= $aClean['sReplyText']."\n"; // append the reply text, if there is any 
                     }
                     addmsg("The test data was successfully added into the database.", "green");
@@ -550,7 +550,7 @@ class testData{
         $oTableRowHeader->AddTextCell("");
         $oTableRowHeader->AddTextCell("Distribution");
         $oTableRowHeader->AddTextCell("Test date");
-        $oTableRowHeader->AddTextCell("Wine version");
+        $oTableRowHeader->AddTextCell("QEMU version");
         $oTableRowHeader->AddTextCell("Installs?");
         $oTableRowHeader->AddTextCell("Runs?");
         $oTableRowHeader->AddTextCell("Rating");
@@ -915,13 +915,13 @@ class testData{
         echo '<tr><td class=color1><b>Tested release</b></td><td class=color0>',"\n";
         echo make_bugzilla_version_list("sTestedRelease", $this->sTestedRelease);
         // Give the user some information about our available versions
-        echo "<span>Version not listed?  Your Wine is too old, <a href=\"http://winehq.org/download\">upgrade!</a></span>";
+        echo "<span>Version not listed?  Your QEMU is too old, <a href=\"http://winehq.org/download\">upgrade!</a></span>";
         echo '</td></tr>',"\n";
 
         // Installs
         echo '<tr><td class=color0><b>Installs?</b></td><td class=color0>',"\n";
         testData::make_Installs_list("sInstalls", $this->sInstalls);
-        echo '&nbsp; Installing is an important part of testing under Wine. Select N/A if there is no installer.</td></tr>',"\n";
+        echo '&nbsp; Installing is an important part of testing under QEMU. Select N/A if there is no installer.</td></tr>',"\n";
         // Runs
         echo '<tr><td class=color1><b>Runs?</b></td><td class=color0>',"\n";
         testData::make_Runs_list("sRuns", $this->sRuns);
@@ -946,9 +946,9 @@ class testData{
             if(getInput('bConfirmTestedVersionChange', $aClean) != 'true')
             {
                 echo '<tr><td class="color1">&nbsp;</td><td class="color0">';
-                echo 'You have changed the Wine version of the report.  Are you sure you want to do this?  Please submit a new test report for every Wine version you test; this is useful for tracking Wine\'s progress.<br>';
+                echo 'You have changed the QEMU version of the report.  Are you sure you want to do this?  Please submit a new test report for every QEMU version you test; this is useful for tracking QEMU\'s progress.<br>';
                 echo '<input type="checkbox" name="bConfirmTestedVersionChange" value="true"> ';
-                echo 'Yes, I want to change the Wine version';
+                echo 'Yes, I want to change the QEMU version';
                 echo '</td></tr>';
             } else
             {
@@ -981,7 +981,7 @@ class testData{
             $errors .= "<li>Please enter the date and time when you tested.</li>\n";
 
         if (empty($aValues['sTestedRelease']))
-            $errors .= "<li>Please enter the version of Wine that you tested with.</li>\n";
+            $errors .= "<li>Please enter the version of QEMU that you tested with.</li>\n";
 
         // Ask for confirmation if changing the tested Wine versions, becase we want users
         // to submit new reports instead of updating existing ones when testing new Wines
@@ -989,8 +989,8 @@ class testData{
         if($this->iTestingId && $oOldTest->sTestedRelease != getInput('sTestedRelease', $aValues) &&
            getInput('bConfirmTestedVersionChange', $aValues) != 'true')
         {
-            $errors .= '<li>Are you sure you want to change the Wine version of the report? Please submit a new '.
-                        'test report for every Wine version you test; this is useful for tracking Wine\'s progress. '.
+            $errors .= '<li>Are you sure you want to change the QEMU version of the report? Please submit a new '.
+                        'test report for every QEMU version you test; this is useful for tracking QEMU\'s progress. '.
                         'Tick the box above the submit button if you want to proceed</li>';
         }
 
@@ -999,29 +999,29 @@ class testData{
             $errors .= "<li>Please enter a distribution.</li>\n";
 
         if (empty($aValues['sInstalls']))
-            $errors .= "<li>Please enter whether this application installs or not.</li>\n";
+            $errors .= "<li>Please enter whether this OS installs or not.</li>\n";
 
         if (empty($aValues['sRuns']))
-            $errors .= "<li>Please enter whether this application runs or not.</li>\n";
+            $errors .= "<li>Please enter whether this OS runs or not.</li>\n";
 
         if (empty($aValues['sTestedRating']))
-            $errors .= "<li>Please enter a rating based on how well this application runs.</li>\n";
+            $errors .= "<li>Please enter a rating based on how well this OS runs.</li>\n";
 
         // Basic checking of rating logic to ensure that the users test results
         // are consistent
         if (($aValues['sRuns'] != "Yes") && ($aValues['sTestedRating'] != GARBAGE_RATING))
-            $errors .= "<li>Applications that do not run should be rated &#8216;Garbage&#8217;.</li>\n";
+            $errors .= "<li>OSes that do not run should be rated &#8216;Garbage&#8217;.</li>\n";
 
         if (($aValues['sInstalls'] == "No") && ($aValues['sTestedRating'] == PLATINUM_RATING))
-            $errors .= "<li>An application can only get a Platinum rating if it installs and runs &#8216;out of the box&#8217;.</li>\n";
+            $errors .= "<li>An OS can only get a Platinum rating if it installs and runs &#8216;out of the box&#8217;.</li>\n";
 
         // Basic checking of logic.  Runs? can obviously only be 'Not Installable'
         // if the application does not install
         if (($aValues['sInstalls'] != "No") && ($aValues['sRuns'] == "Not installable"))
-            $errors .= "<li>You can only set Runs? to &#8216;Not installable&#8217; if the application's installer does not work</li>\n";
+            $errors .= "<li>You can only set Runs? to &#8216;Not installable&#8217; if the OS's installer does not work</li>\n";
 	    
 	if (($aValues['sInstalls'] == "No") && ($aValues['sRuns'] != "Not installable"))
-            $errors .= "<li>You can only set Runs? to &#8216;Not installable&#8217;' if the application's installer does not work</li>\n";
+            $errors .= "<li>You can only set Runs? to &#8216;Not installable&#8217;' if the OS's installer does not work</li>\n";
 
         return $errors;
 
@@ -1122,7 +1122,7 @@ class testData{
         $oTableRow = new TableRow();
         $oTableRow->AddTextCell('Version');
         $oTableRow->AddTextCell('Rating');
-        $oTableRow->AddTextCell('Wine version');
+        $oTableRow->AddTextCell('QEMU version');
         $oTableRow->AddTextCell('Submission date');
 
         if($bQueued)
@@ -1315,7 +1315,7 @@ class testData{
         $oTableRow = new TableRow();
         $oTableRow->AddTextCell("Submission Date");
         $oTableRow->AddTextCell("Submitter");
-        $oTableRow->AddTextCell("Application");
+        $oTableRow->AddTextCell("OS");
         $oTableRow->AddTextCell("Version");
         $oTableRow->AddTextCell("Release");
         $oTableRow->AddTextCell("Has maintainer");
@@ -1449,12 +1449,18 @@ class testData{
     {
         echo "<p>This is the screen for inputing test information so that others ";
         echo "looking at the database will know \n";
-        echo "what was working on a particular release of Wine.</p>\n";
-        echo "<p><b>Please DO NOT include crash or Wine debug output.\n";
-        echo " Instead report the crash as a bug in the Wine bugzilla at \n";
-        echo "<a href=\"http://bugs.winehq.org\">http://bugs.winehq.org</a>.\n";
+        echo "what was working on a particular release of QEMU.</p>\n";
+        echo "<p><b>Please DO NOT include crash or QEMU debug output.\n";
+/*
+        echo " Instead report the crash as a bug in the QEMU bugzilla at \n";
+        echo "<a href=\"http://bugs.claunia.com\">http://bugs.claunia.com</a>.\n";
         echo "We ask that you use bugzilla because developers do not monitor the AppDB \n";
         echo "for bugs.</b></p>\n"; 
+*/
+        echo " Instead report the crash as a bug to the qemu-devel mailing list at \n";
+        echo "qemu-devel@nongnu.org.  We ask that you use the mailing list because \n";
+        echo "developers do not monitor the OS DB for bugs.</b></p>\n";
+
         echo "<p>Please be as detailed as you can but do not paste large \n";
         echo "chunks of output from the terminal. Type out your report \n";
         echo "clearly and in proper English so that it is easily readable.</p>\n";

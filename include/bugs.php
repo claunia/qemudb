@@ -238,7 +238,7 @@ class Bug
                         $sAppName." has been deleted.";
             }
             $sMsg .= $aClean['sReplyText']."\n";
-            $sMsg .= "We appreciate your help in making the Application Database better for all users.";
+            $sMsg .= "We appreciate your help in making the Operating Systems Database better for all users.";
                 
             mail_appdb($oSubmitter->sEmail, $sSubject ,$sMsg);
         }

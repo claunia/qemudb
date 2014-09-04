@@ -382,7 +382,7 @@ class distribution {
                 }
             break;
             }
-            $sMsg .= "We appreciate your help in making the Application Database better for all users.";
+            $sMsg .= "We appreciate your help in making the Operating Systems Database better for all users.";
 
             mail_appdb($oSubmitter->sEmail, $sSubject ,$sMsg);
         }
@@ -406,7 +406,7 @@ class distribution {
                         $oSubmitter = new User($this->iSubmitterId);
                         $sMsg .= "This Distribution has been submitted by ".$oSubmitter->sRealname.".";
                         $sMsg .= "\n";
-                        $sMsg .= "Appdb admin reply text:\n";
+                        $sMsg .= "OS DB admin reply text:\n";
                         $sMsg .= $aClean['sReplyText']."\n"; // append the reply text, if there is any 
                     }
                     addmsg("The Distribution was successfully added into the database.", "green");
@@ -681,10 +681,10 @@ class distribution {
             echo '<table width="100%" border="1">',"\n";
             echo '<thead class="historyHeader">',"\n";
             echo '<tr>',"\n";
-            echo '<td>Application Version</td>',"\n";
+            echo '<td>OS Version</td>',"\n";
             echo '<td>Submitter</td>',"\n";
             echo '<td>Date Submitted</td>',"\n";
-            echo '<td>Wine version</td>',"\n";
+            echo '<td>QEMU version</td>',"\n";
             echo '<td>Installs?</td>',"\n";
             echo '<td>Runs?</td>',"\n";
             echo '<td>Rating</td>',"\n";

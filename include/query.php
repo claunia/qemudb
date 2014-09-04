@@ -155,7 +155,7 @@ function query_error($sQuery, $sComment, $hLink)
                          "mysql_error(): '".mysql_error($hLink)."' ".
                          "comment: '".$sComment."'");
 
-    $sStatusMessage = "<p><b>An internal error has occurred and has been logged and reported to appdb admins</b></p>";
+    $sStatusMessage = "<p><b>An internal error has occurred and has been logged and reported to OS DB admins</b></p>";
     addmsg($sStatusMessage);
 
     $bInQueryError = false; // clear variable upon exit

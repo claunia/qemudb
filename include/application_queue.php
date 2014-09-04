@@ -199,7 +199,7 @@ class application_queue
         {
             echo "<div style='margin:auto; width: 500px; border:1px solid; background-color:#eee; padding:2px; '>\n";
             echo "<div style='font-weight:bold; padding:3px;'>\n";
-            echo "Application name:\n";
+            echo "OS name:\n";
             echo "</div>\n";
             echo "<div style='padding:5px;'>\n";
             echo "<center><input type=\"text\" name=\"sAppName\" style='width:485px;'></center>\n";
@@ -210,7 +210,7 @@ class application_queue
         } else
         {
             /* Show potential duplicates */
-            echo html_frame_start("Potential duplicate applications in the ".
+            echo html_frame_start("Potential duplicate OSes in the ".
                     "database","90%","",0);
             $this->displayDuplicates();
             echo html_frame_end("&nbsp;");
@@ -248,7 +248,7 @@ class application_queue
             else
                 $shPreviewApp = ' checked="checked"';
 
-            echo "<input type=\"radio\" name=\"bPreviewVersion\"$shPreviewApp value=\"false\"> Preview application<br>\n";
+            echo "<input type=\"radio\" name=\"bPreviewVersion\"$shPreviewApp value=\"false\"> Preview OS<br>\n";
             echo "<input type=\"radio\" name=\"bPreviewVersion\"$shPreviewVersion value=\"true\"> Preview version\n";
             echo html_frame_end();
         }
@@ -311,7 +311,7 @@ class application_queue
         }
 
         $aHeader =  array(
-                "Application name",
+                "OS name",
                 "Description",
                 "No. versions"
                           );

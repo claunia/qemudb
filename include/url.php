@@ -182,7 +182,7 @@ class Url {
                 return false;
             $oAppBefore = new Application($this->iAppId);
             $oAppAfter = new Application($iAppId);
-            $sWhatChanged .= "Application was changed from ".$oAppBefore->sName." to ".$oAppAfter->sName.".\n\n";
+            $sWhatChanged .= "OS was changed from ".$oAppBefore->sName." to ".$oAppAfter->sName.".\n\n";
             $this->iAppId = $iAppId;
         }
         if($sWhatChanged && !$bSilent)
@@ -209,7 +209,7 @@ class Url {
                  $sMsg  = "The url you submitted for ".$sAppName." has been rejected.";
             }
             $sMsg .= $aClean['sReplyText']."\n";
-            $sMsg .= "We appreciate your help in making the Application Database better for all users.";
+            $sMsg .= "We appreciate your help in making the Operating Systems Database better for all users.";
                 
             mail_appdb($oSubmitter->sEmail, $sSubject ,$sMsg);
         }

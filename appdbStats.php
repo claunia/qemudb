@@ -7,7 +7,7 @@ require("path.php");
 require(BASE."include/incl.php");
 require_once(BASE."include/user.php");
 
-apidb_header("Appdb Statistics");
+apidb_header("OS DB Statistics");
 
 echo "<div class='default_container'>\n";
 
@@ -59,7 +59,7 @@ echo "</tr>\n\n";
 
 /* Display the number of application familes */
 echo "<tr class=color4>\n";
-echo "    <td>Application families:</td>\n";
+echo "    <td>OS families:</td>\n";
 echo "    <td>".application::objectGetEntriesCount('accepted')."</td>\n";
 echo "</tr>\n\n";
 
@@ -71,7 +71,7 @@ echo "</tr>\n\n";
 
 /* Display the number of application maintainers */
 echo "<tr class=color4>\n";
-echo "    <td>Application maintainers:</td>\n";
+echo "    <td>OS maintainers:</td>\n";
 echo "    <td>".Maintainer::getNumberOfMaintainers()."</td>\n";
 echo "</tr>\n\n";
 

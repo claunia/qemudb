@@ -80,23 +80,23 @@ class maintainerView
         if(!$aMaintainedApps || !sizeof($aMaintainedApps))
         {
             if($this->bViewingSelf)
-                echo '<p>You do not maintain any apps</p>';
+                echo '<p>You do not maintain any OSes</p>';
             else
-                echo "<p>{$oUser->sRealname} does not maintain any apps</p>";
+                echo "<p>{$oUser->sRealname} does not maintain any OSes</p>";
             return;
         }
 
         if($this->bViewingSelf)
-            echo '<p>Viewing your maintained apps</p>';
+            echo '<p>Viewing your maintained OSes:</p>';
         else
-            echo "<p>Viewing {$oUser->sRealname}'s maintained apps</p>";
+            echo "<p>Viewing {$oUser->sRealname}'s maintained OSes:</p>";
 
         $oTable = new Table();
         $oTableRow = new TableRow();
         $oTableRow->setClass('color4');
         $oTable->setCellSpacing(0);
         $oTable->setCellPadding(3);
-        $oTableRow->AddTextCell('Application');
+        $oTableRow->AddTextCell('OS');
         $oTableRow->AddTextCell('Version');
         $oTableRow->AddTextCell('Current Rating');
         $oTableRow->AddTextCell('Current Version');

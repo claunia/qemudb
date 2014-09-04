@@ -71,10 +71,10 @@ function showComment(commentid)
 var ratingdesc=[
 		"",
 		" Works flawlessly out of the box - no problems ",
-		" Works flawlessly with DLL overrides, third party software or other settings ",
-		" Works excellently for normal use;works fine in singleplayer but not multi ",
+		" Works flawlessly with workarounds or other settings ",
+		" Works excellently for normal use ",
 		" Works but has issues for normal use ",
-		" Does not run or cannot be installed with Wine "
+		" Does not run or cannot be installed with QEMU "
 		];
 var ratingstyle =[
 		  "",
@@ -92,7 +92,7 @@ function showHint(o){
 	    $('hint').addClassName(ratingstyle[o.selectedIndex]);
 	}
 }
-/* too many people still call Wine "WINE" */
+/* too many people still call QEMU "Qemu" */
 function bind_tolowerWINE()
 {
     [
@@ -111,7 +111,7 @@ function bind_tolowerWINE()
 }
 function tolowerWINE(o)
       {
-	o.element().value = o.element().value.replace(/WINE([^A-Z]+)|(WINE)$/g,"Wine$1");
+	o.element().value = o.element().value.replace(/Qemu([^A-Z]+)|(Qemu)$/g,"QEMU$1");
       }
 /* executed when document is ready */
 document.observe("dom:loaded", function() {

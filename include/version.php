@@ -219,7 +219,7 @@ class version {
                                   $this->iAppId, $this->sState, $this->iVersionId))
                 return false;
 
-            $sWhatChanged .= "Version was moved from application ".$oAppBefore->sName." to application ".$oAppAfter->sName.".\n\n";
+            $sWhatChanged .= "Version was moved from OS ".$oAppBefore->sName." to OS ".$oAppAfter->sName.".\n\n";
         }
 
         if ($this->sLicense && ($this->sLicense!=$oVersion->sLicense))
@@ -476,14 +476,14 @@ class version {
                 $sSubject = "Submitted version rejected";
                 $sMsg  = "The version you submitted (".$oApp->sName." ".$this->sName.") has been rejected by ".$_SESSION['current']->sRealname.".";
                 $sMsg .= "Clicking on the link in this email will allow you to modify and resubmit the version. ";
-                $sMsg .= "A link to your queue of applications and versions will also show up on the left hand side of the Appdb site once you have logged in. ";
+                $sMsg .= "A link to your queue of OSes and versions will also show up on the left hand side of the OS DB site once you have logged in. ";
                 $sMsg .= APPDB_ROOT."objectManager.php?sClass=version_queue".
                         "&amp;bIsQueue=true&amp;bIsRejected=true&amp;iId=".$this->iVersionId."&amp;".
                         "sTitle=Edit+Version\n";
             break;
             }
             $sMsg .= $aClean['sReplyText']."\n";
-            $sMsg .= "We appreciate your help in making the Version Database better for all users.";
+            $sMsg .= "We appreciate your help in making the Application Database better for all users.";
         
             mail_appdb($oSubmitter->sEmail, $sSubject ,$sMsg);
         }
@@ -513,7 +513,7 @@ class version {
                     }
                     if($aClean['sReplyText'])
                     {
-                        $sMsg .= "Appdb admin reply text:\n";
+                        $sMsg .= "OS DB admin reply text:\n";
                         $sMsg .= $aClean['sReplyText']."\n"; // append the reply text, if there is any 
                     }
 
@@ -634,7 +634,7 @@ class version {
             $oTableRow = new TableRow();
             $oTableRow->SetValign("top");
 
-            $oTableCell = new TableCell("Application");
+            $oTableCell = new TableCell("OS");
             $oTableCell->SetBold(true);
             $oTableRow->AddCell($oTableCell);
 
@@ -744,7 +744,7 @@ class version {
         $errors = "";
 
         if (empty($aValues['sVersionName']))
-            $errors .= "<li>Please enter an application version.</li>\n";
+            $errors .= "<li>Please enter an OS version.</li>\n";
 
         if (empty($aValues['shVersionDescription']))
             $errors .= "<li>Please enter a version description.</li>\n";
@@ -1161,7 +1161,7 @@ class version {
             echo html_note('No Test Results',
                            'This version has no test results, please consider submitting some.<br>'.
                            'They may be part of the '.
-                           'version or application description. If they are, please '.
+                           'version or OS description. If they are, please '.
                            'consider becoming a maintainer and remove them, submitting '.
                            'a proper test report instead.');
         }
@@ -1653,7 +1653,7 @@ class version {
         $oTableRow->AddTextCell("Submission Date");
         $oTableRow->AddTextCell("Submitter");
         $oTableRow->AddTextCell("Developer");
-        $oTableRow->AddTextCell("Application");
+        $oTableRow->AddTextCell("OS");
         $oTableRow->AddTextCell("Version");
         $oTableRow->AddTextCell("Has Maintainer");
         return $oTableRow;

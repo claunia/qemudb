@@ -12,7 +12,7 @@
     <meta name="description" content="Open Source Software for system and runtime emulation.">
     <meta name="keywords" content="windows, linux, macintosh, solaris, freebsd, qemu">
     <meta name="robots" content="index, follow">
-    <meta name="copyright" content="Copyright QEMU & Claunia.com All Rights Reserved.">
+    <meta name="copyright" content="Copyright QEMU &amp; Claunia.com All Rights Reserved.">
     <meta name="language" content="English">
     <meta name="revisit-after" content="1">
     <link rel="stylesheet" href="<?php echo BASE; ?>styles.css" type="text/css" media="screen">
@@ -26,6 +26,9 @@
     </head>
 <body>
 
+
+<div id="logo_glass"><a href="<?php echo BASE; ?>"></a></div>
+<div id="logo_text"><a href="<?php echo BASE; ?>">QEMU</a></div>
 
 <div id="logo_blurb"><?php echo preg_replace("/^ - /", "", $title); ?></div>
 

@@ -19,7 +19,7 @@ function mail_appdb($sEmailList,$sSubject,$sMsg)
     $sMsg  = trim(ereg_replace("\r\n","\n",$sMsg));
     $sMsg  = $sSubject."\n-------------------------------------------------------\n".$sMsg."\n\n";
     $sMsg .= "Best regards.\n";
-    $sMsg .= "The QEMU team\n";
+    $sMsg .= "The QEMU OS Database team\n";
     $sMsg .= APPDB_ROOT."\n";
     $sMsg .= "\n\nIf you don't want to receive any other e-mail, please change your preferences:\n";
     $sMsg .= APPDB_ROOT."preferences.php\n";
@@ -37,7 +37,7 @@ function mail_appdb($sEmailList,$sSubject,$sMsg)
     }
 
     $sMsg = html_entity_decode($sMsg);
-    $bResult = mail(APPDB_SENDER_EMAIL, "[QEMU OSDB] ".$sSubject, $sMsg, $sHeaders,
+    $bResult = mail(APPDB_SENDER_EMAIL, "[QEMU OS DB] ".$sSubject, $sMsg, $sHeaders,
                     "-f".APPDB_SENDER_EMAIL);
     if($bResult)
         addmsg("E-mail sent", "green");

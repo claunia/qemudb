@@ -139,13 +139,13 @@ if(!$aClean['sSubmit'])
         $sSubjectRe = urlencode($sSubjectRe);
 
         $sMsg = "The following message was sent to you from $oUser->sRealname ";
-        $sMsg .= "through the Wine AppDB contact form.\nTo Reply, visit ";
+        $sMsg .= "through the QEMU OS DB contact form.\nTo Reply, visit ";
         $sMsg .= APPDB_ROOT."contact.php?iRecipientId=$oUser->iUserId&amp;sSubject=";
         $sMsg .= $sSubjectRe."\n\n";
         $sMsg .= $aClean['sMessage'];
     } else
     {
-        $sMsg = "The following message was sent to you by the AppDB admins:\n\n";
+        $sMsg = "The following message was sent to you by the OS DB admins:\n\n";
         $sMsg .= $aClean['sMessage'];
     }
 

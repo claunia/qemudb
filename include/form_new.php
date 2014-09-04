@@ -23,7 +23,7 @@ The password will be sent to your e-mail
     </tr>
 <?php
 
-        echo "<tr><td class=color1>&nbsp; Wine version </td><td class=color0>";
+        echo "<tr><td class=color1>&nbsp; QEMU version </td><td class=color0>";
         echo make_bugzilla_version_list("sWineRelease", isset($aClean['sWineRelease']) ? $aClean['sWineRelease'] : '');
         echo "</td></tr>";
 
