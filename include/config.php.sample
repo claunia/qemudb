@@ -7,18 +7,18 @@
 /*
  * global params
  */
-define("APPDB_DEBUG","0"); //turns debugging on/off
+define("APPDB_DEBUG","1"); //turns debugging on/off
 define("APPDB_DONT_CLEAR_COOKIES_VAR","0"); // set to 1 if you have more than one Web application on the same virtual host
 define("APPDB_THUMBNAIL_WIDTH","128"); // width of the screenshot's thumbnails
 define("APPDB_THUMBNAIL_HEIGHT","128"); // height of the screenshot's thumbnails
-define("APPDB_SCREENSHOT_MAXWIDTH","1024"); // width of the screenshot's thumbnails
-define("APPDB_SCREENSHOT_MAXHEIGHT","768"); // height of the screenshot's thumbnails
-define("APPDB_ROOT", "http://localhost/appdb/");  // path to AppDB
-define("APPDB_OWNER","WineHQ"); // with what product/company is this AppDB related ?
-define("APPDB_OWNER_URL","http://www.winehq.org/"); // website of this product/company
-define("APPDB_OWNER_EMAIL","appdb@winehq.org"); // e-mail of this product/company
-define("APPDB_SENDER_EMAIL","appdb-noreply@winehq.org"); // The e-mail address which appears as the sender in mails sent by the AppDB
-define("BUGZILLA_ROOT","http://bugs.winehq.org/"); // path to bugzilla
+define("APPDB_SCREENSHOT_MAXWIDTH","1600"); // width of the screenshot's thumbnails
+define("APPDB_SCREENSHOT_MAXHEIGHT","1200"); // height of the screenshot's thumbnails
+define("APPDB_ROOT", "http://www.claunia.com/qemu3/appdb/");  // path to AppDB
+define("APPDB_OWNER","QEMU"); // with what product/company is this AppDB related ?
+define("APPDB_OWNER_URL","http://www.claunia.com/"); // website of this product/company
+define("APPDB_OWNER_EMAIL","natalia@claunia.com"); // e-mail of this product/company
+define("APPDB_SENDER_EMAIL","appdb-noreply@claunia.com"); // The e-mail address which appears as the sender in mails sent by the AppDB
+define("BUGZILLA_ROOT","http://bugs.claunia.com/"); // path to bugzilla
 
 // AppDB developers: Use this define to disable email from being sent from the appdb during testing
 //if(!defined("DISABLE_EMAIL"))
@@ -35,13 +35,13 @@ define("TESTDATA_AGED_THRESHOLD", 175);
 
 // Show versions from these branches even if they are not among the most recent ones
 // Separate by commas if there are more than one
-define("STABLE_BRANCHES", "1.0.");
+define("STABLE_BRANCHES", "0.8.0, 0.9.0, 0.10.0, 0.11.0");
 
 /*
  * apps database info
  */
-define("APPS_DBUSER","wineowner");
-define("APPS_DBPASS","lemonade");
+define("APPS_DBUSER","qemu");
+define("APPS_DBPASS","");
 define("APPS_DBHOST","localhost");
 define("APPS_DB","apidb");
 
@@ -49,7 +49,7 @@ define("APPS_DB","apidb");
 /*
  * bugzilla database info
  */
-define("BUGZILLA_DBUSER","root");
+define("BUGZILLA_DBUSER","qemu");
 define("BUGZILLA_DBPASS","");
 define("BUGZILLA_DBHOST","localhost");
 define("BUGZILLA_DB","bugs");
